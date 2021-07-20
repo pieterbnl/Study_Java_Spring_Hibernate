@@ -80,6 +80,60 @@ package com.pbe;
 // Spring 5 does not yet support this package renaming and currently doesn't work on Tomcat 10
 // Therefore when using Tomcat with Spring, latest version 9 is to be used
 
+// Spring download
+// https://repo.spring.io/ui/repos/tree/General/libs-release%2Forg%2Fspringframework
+// Select Artifacts -> libs-release -> org -> springframework -> spring -> [choose version] and select spring-x.x.x-dist.zip
+// Unzip that file and copy all .jar files that are present in the libs folder
+// Paste all files in own to be created libs folder in your project
+// Add JAR files to Java build path. IntelliJ:
+// - Click File from the toolbar
+// - Project Structure (CTRL + SHIFT + ALT + S on Windows/Linux, ⌘ + ; on Mac OS X)
+// - Select Modules at the left panel
+// - Dependencies tab
+// - '+' → JARs or directories
+// Alternatively: use Maven
+
+// Inversion of Control (IoC) = outsource to an 'object factory'
+// IoC is the approach of outsourcing the construction and management of objects
+// Spring can be requested to provide an 'object factory', based on a configuration file or annotation
+// It will then provide the appropriate implementation, essentially making the application configurable
+//
+// The primary functions of a Spring container:
+// 1. Create and manage objects (Inversion of Control)
+// 2. Inject object's dependencies (Dependency Injection)
+//
+// Three ways to configure a Spring container:
+// 1. XML configuration file (legacy - still used by most legacy apps)
+//    Specifies an bean id (is like an alias) + fully qualified class name of implementation class
+//    For example: <beans...><bean id="myCoach" class="com.pbe.cyclingCoach"></bean></beans>//
+// 2. Java annotations (modern)
+// 3. Java source code (modern)
+//
+// Spring development process:
+// 1. Configure Spring Beans (== a Java object; Spring beans are created as normal Java classes)
+//    As per 1 of the 3 methods as mentioned.
+//    In case of XML, this means configuring beans in an 'applicationContext.xml' file, placed in the Java src folder.
+// 2. Create a Spring Container (generically known as ApplicationContext)
+//    Specialized implementations are available. For example:
+//    ClassPathXmlApplicationContext, AnnotationConfigApplicationContext, GenericWebApplicationContext, etc.
+//    Example of creating a container, by passing the name of an xml configuration file (applicationContext.xml):
+//    ClassPathXmlApplicationContext context = new ClassPAthXmlApplicationContext("applicationContext.xml");
+// 3. Retrieve Beans from Spring Container
+//    The application will request a certain object from the Spring Container.
+//    Based on the configuration file, it will give an implementation of the given interface.
+//    Example of retrieving a bean from spring container:
+//    Coach coach = context.getBean("myCoach", Coach.class);
+//    Note that the given name (myCoach) must match with the configuration file bean id.
+//    Coach.class is the interface, with cyclingCoach being the implementation.
+
+// Spring logging
+// As per Spring 5.1, internal logging messages are by default set not to be shown.
+// To make logging visible:
+// 1. Create a bean to configure the parent logger and console handler
+// 2. Configure the bean in the Spring XML config file
+
+
+
 public class Main {
 
     public static void main(String[] args) {

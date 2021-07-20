@@ -51,6 +51,7 @@ Servers/
 .settings
 .springBeans
 .sts4-cache
+/libs/
 
 ### IntelliJ IDEA ###
 .idea
