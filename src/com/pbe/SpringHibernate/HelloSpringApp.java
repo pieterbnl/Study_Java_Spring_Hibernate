@@ -1,4 +1,4 @@
-package com.pbe.InversionOfControl;
+package com.pbe.SpringHibernate;
 
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,9 +19,10 @@ public class HelloSpringApp {
         Coach coach = context.getBean("myCoach", Coach.class);
         Coach coach2 = context.getBean("myCoach2", Coach.class);
 
-        // Call method on the bean
+        // Call methods on the bean
         System.out.println(coach.getDailyWorkout());
         System.out.println(coach2.getDailyWorkout());
+        System.out.println(coach.getDailyFortune());
 
         // Close the context (=container) after use
         // This will release any resources and locks that its implementation might hold

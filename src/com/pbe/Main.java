@@ -132,7 +132,50 @@ package com.pbe;
 // 1. Create a bean to configure the parent logger and console handler
 // 2. Configure the bean in the Spring XML config file
 
+// Dependency Injection
+// Dependency Injection was introduced by Martin Fowler.
+// It's about passing dependency to other objects ("called dependencies") or framework (dependency injector).
+// The principal objective is to separate the responsibility of resolving object dependency from its behavior.
+// In the typical "using" relationship:
+// - the receiving object is called a client.
+// - the passed (that is, "injected") object is called a service.
+// - the code that passes from service to client is called the injector (and can be many kind of things).
+// Instead of the client specifying which service it will use, the injector tells the client what service to use.
+// The "injection" refers to the passing of a dependency (a service) into the object (a client) that would use it.
+//
+// Creating objects directly within the class is inflexible because:
+// - It commits the class to particular objects.
+// - Im makes it impossible to change the instantiation later independently from the class.
+// - It stops the class from being reusable if other objects are required.
+// - It makes the class hard to test because real objects can not be replaced with mock objects.
+//
+// Depending on an interface is more flexible than depending on concrete classes.
+// OO languages provide ways in which abstractions can be replaced with concrete implementations at runtime.
+// This is the best way to make the codebase flexible and reusable.
+//
+// To relate to Spring:
+// The Spring Object Factory creates an object on request.
+// Any dependencies (== helper objects) that it may require, are known to Spring through the configuration file.
+// Spring will take care of dealing with these dependencies, resulting in a ready to use Object.
 
+// Injection Types
+// There are many types of injection with Spring. The two most common:
+// 1. Constructor Injection
+//    1.1 Define the dependency interface and class
+//    1.2 Create a constructor in the class for injections
+//    1.3 Configure the dependency injection in Spring config file
+// 2. Setter Injection
+
+// How Spring process the config file
+// 1. Defined beans are triggering the creation of objects:
+//    This:     <bean id="myFortuneService" class="com.pbe.SpringHibernate.HappyFortuneService"></bean>
+//    Becomes:  HappyFortuneService myFortuneService = new HappyFortuneService();
+// 2. Constructor-arg's are passed in automatically:
+//    This:     <bean id="myCoach" class="com.pbe.SpringHibernate.BaseballCoach"><constructor-arg ref="myFortuneService"/></bean>
+//    Becomes:  BaseballCoach myCoach = new BaseballCoach(myFortuneService);
+
+// Auto-wiring
+// T.b.d.
 
 public class Main {
 

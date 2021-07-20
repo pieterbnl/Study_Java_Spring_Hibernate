@@ -1,4 +1,4 @@
-package com.pbe.InversionOfControl;
+package com.pbe.SpringHibernate;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
