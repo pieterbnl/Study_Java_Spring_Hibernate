@@ -15,7 +15,6 @@ public class HelloSpringApp {
         // Retrieve bean from Spring container
         // Note that Coach is the name of the interface that's implemented
         // When passing the interface to the method, Spring will cast the object
-
         Coach coach = context.getBean("myCoach", Coach.class);
         Coach coach2 = context.getBean("myCoach2", Coach.class);
 

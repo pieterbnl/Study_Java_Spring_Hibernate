@@ -159,20 +159,37 @@ package com.pbe;
 // Spring will take care of dealing with these dependencies, resulting in a ready to use Object.
 
 // Injection Types
-// There are many types of injection with Spring. The two most common:
+// There are many types of injection with Spring:
 // 1. Constructor Injection
 //    1.1 Define the dependency interface and class
 //    1.2 Create a constructor in the class for injections
 //    1.3 Configure the dependency injection in Spring config file
 // 2. Setter Injection
+//    1.1 Create setter method in class for injections
+//    1.2 Configure the dependency injection in Spring config file
+// 3. Literal injection
+//    1.1 Create private fields to hold the required values, then create setter method(s) in class for injections
+//    1.2 Configure the dependency injection in Spring config file
 
-// How Spring process the config file
+// How Spring processes the config file
 // 1. Defined beans are triggering the creation of objects:
 //    This:     <bean id="myFortuneService" class="com.pbe.SpringHibernate.HappyFortuneService"></bean>
 //    Becomes:  HappyFortuneService myFortuneService = new HappyFortuneService();
 // 2. Constructor-arg's are passed in automatically:
-//    This:     <bean id="myCoach" class="com.pbe.SpringHibernate.BaseballCoach"><constructor-arg ref="myFortuneService"/></bean>
+//    This:     <bean id="myCoach" class="com.pbe.SpringHibernate.BaseballCoach">
+//              <constructor-arg ref="myFortuneService"/></bean>
 //    Becomes:  BaseballCoach myCoach = new BaseballCoach(myFortuneService);
+// 3. Setter injections
+//    This:     <bean id="myCricketCoach" class="com.pbe.SpringHibernate.CricketCoach">
+//              <property name="fortuneService" ref="myFortuneService"/></bean>
+//    Becomes:  myCricketCoach.setFortuneService(myFortuneService);
+// 4. Literal injections
+//    This:     <bean id="myCricketCoach" class="com.pbe.SpringHibernate.CricketCoach">
+//              <property name="emailAddress" value="bestcoach@cricketsports.com"/></bean>
+//    Becomes:  myCricketCoach.setFortuneService(myFortuneService);
+//
+// Note that the attribute name 'value' is for literal values,
+// and 'ref' is used to refer to other objects or dependencies.
 
 // Auto-wiring
 // T.b.d.

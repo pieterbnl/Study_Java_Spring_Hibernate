@@ -16,21 +16,35 @@
     </bean>
 
     <!-- defining dependencies> -->
-    <bean id="myFortune"
+    <bean id="myFortuneService"
           class="com.pbe.SpringHibernate.HappyFortuneService">
     </bean>
 
     <bean id="myCoach"
         class="com.pbe.SpringHibernate.TrackCoach">
-        <constructor-arg ref="myFortune"/> <!-- injecting dependency, using 'constructor injection' >
-        Tells Spring to inject this dependency into the BaseballCoach
-        Spring will call the BaseballCoach constructor, and pass in a reference to the myFortuneService
+        <constructor-arg ref="myFortuneService"/> <!-- injecting dependency, using 'constructor injection' >
+        Tells Spring to inject this dependency into the TrackCoach
+        Spring will call the TrackCoach constructor, and pass in a reference to the myFortuneService
         Spring will construct the object and pass in the appropriate data into the constructor
         Spring is responsible for creating objects and injecting their dependencies -->
     </bean>
 
     <bean id="myCoach2"
           class="com.pbe.SpringHibernate.CyclingCoach">
+    </bean>
+
+    <bean id="myCricketCoach"
+          class="com.pbe.SpringHibernate.CricketCoach">
+
+        <!-- injecting dependency, using 'setter injection' >
+        Tells Spring to inject this dependency into the CricketCoach
+        Spring will call the method and pass in a reference to the myFortuneService -->
+        <property name="fortuneService" ref="myFortuneService"/>
+
+        <!-- injecting literal values -->
+        <property name="emailAddress" value="bestcoach@cricketsports.com"/>
+        <property name="team" value="Cricketeers"/>
+
     </bean>
 
 </beans>
