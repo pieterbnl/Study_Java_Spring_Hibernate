@@ -191,6 +191,17 @@ package com.pbe;
 // Note that the attribute name 'value' is for literal values,
 // and 'ref' is used to refer to other objects or dependencies.
 
+// Using a properties file
+// Instead of injecting literal values hard coded, they can also be read from an (external) properties file. Steps:
+
+// 1. Create properties file
+//    For example "sport.properties" with the values like foo.email=mycoach@cricketsport.com
+// 2. Load properties file in Spring config file
+//    First add context: <context:property-placeholder location="classpath:sport.properties"/>
+//    Then add properties at appropriate bean: <context:property-placeholder location="classpath:sport.properties"/>
+// 3. Reference values from properties file
+//    For example: <property name="emailAddress" value="${foo.email}"/>
+
 // Auto-wiring
 // T.b.d.
 

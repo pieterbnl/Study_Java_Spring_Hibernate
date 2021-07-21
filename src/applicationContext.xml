@@ -7,9 +7,10 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--
-	Logger config to see logging messages. Set log details level to FINE or FINEST
-    -->
+    <!-- Load properties file -->
+    <context:property-placeholder location="classpath:sport.properties"/>
+
+    <!-- Logger config to see logging messages. Set log details level to FINE or FINEST -->
     <bean id="myLoggerConfig" class="com.pbe.SpringHibernate.MyLoggerConfig" init-method="initLogger">
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
@@ -42,8 +43,8 @@
         <property name="fortuneService" ref="myFortuneService"/>
 
         <!-- injecting literal values -->
-        <property name="emailAddress" value="bestcoach@cricketsports.com"/>
-        <property name="team" value="Cricketeers"/>
+        <property name="emailAddress" value="${foo.email}"/>
+        <property name="team" value="${foo.team}"/>
 
     </bean>
 
