@@ -202,6 +202,44 @@ package com.pbe;
 // 3. Reference values from properties file
 //    For example: <property name="emailAddress" value="${foo.email}"/>
 
+// Bean scopes
+// Refers to the lifecycle of a bean.
+// It tells how long a bean lives, how many instances are created and how the bean is shared in the Spring environment.
+//
+// The default scope is 'Singleton':
+// - The Spring container only created one instance of the bean (by default)
+// - It's cached in memory
+// - All requests for the bean will return a SHARED reference to the SAME bean
+// NOTE: The scope can be explicitly specified by using the "scope" attribute in the first <bean> section
+//
+// Other scopes:
+// - prototype: creates a new bean instance for each container request (for keeping track of stateful data)
+// - request: scoped to an HTTP web request; only used for web apps
+// - session: scoped to an HTTP web session; only used for web apps (for example: shopping cart)
+// - global-session: scoped to a global HTTP web session; only used for web apps
+
+// Bean lifecycle after container starts
+// 1. Bean instantiated
+// 2. Dependencies injected
+// 3. Internal Spring processing
+// 4. Customer init method
+//
+// Custom code can be added during bean initialization and during bean destruction (== methods / hooks).
+// To call customer business logic & setup or clean up handles to resources such as db, sockets, files, etc.
+// To do so use the attribute "init-method=someMethodName" or "destroy-method=someMethodName" the first <bean> section
+// Steps: 1. define init and destroy methods, 2. configure the methods in the Spring config file
+//
+// NOTES:
+// - The init & destroy method can have any access modifier and a return type (although void is most commonly used).
+// It cannot accept any arguments. I.e. it should be no-arg.
+// - For 'prototype' scoped beans, Spring does NOT call the destroy method.
+// In contrast to the other scopes, Spring does not manage the complete lifecycle of a prototype bean:
+// the container instantiates, configures, and otherwise assembles a prototype object,
+// and hands it to the client, with no further record of that prototype instance.
+// This means that the client code must clean up prototype-scoped objects
+// and release expensive resources that the prototype bean(s) are holding.
+
+
 // Auto-wiring
 // T.b.d.
 

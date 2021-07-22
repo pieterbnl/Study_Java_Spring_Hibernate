@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Logger config to see logging messages. Set log details level to FINE or FINEST -->
+    <bean id="myLoggerConfig" class="com.pbe.SpringHibernate.MyLoggerConfig" init-method="initLogger">
+        <property name="rootLoggerLevel" value="FINE" />
+        <property name="printedLoggerLevel" value="FINE"/>
+    </bean>
+
+    <!-- defining dependencies> -->
+    <bean id="myFortuneService"
+          class="com.pbe.SpringHibernate.HappyFortuneService">
+    </bean>
+
+    <bean id="myCoach"
+        class="com.pbe.SpringHibernate.TrackCoach"
+        init-method="doMyStartupStuff"
+        destroy-method="doMyCleanupStuff"> <!-- setting init & destroy method -->
+
+        <!-- injecting dependency, using 'constructor injection' >
+        Tells Spring to inject this dependency into the TrackCoach
+        Spring will call the TrackCoach constructor, and pass in a reference to the myFortuneService
+        Spring will construct the object and pass in the appropriate data into the constructor
+        Spring is responsible for creating objects and injecting their dependencies -->
+        <constructor-arg ref="myFortuneService"/>
+    </bean>
+
+</beans>
